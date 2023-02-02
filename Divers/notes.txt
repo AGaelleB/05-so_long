@@ -1,0 +1,40 @@
+ASK :
+commande pour verifier les forbiden functions
+
+TO DO :
+
+Verifier que la map soit en .ber
+{
+	fd = open(av[1], O_DIRECTORY);
+}
+
+
+TO FO POUR LUNDI
+
+1- bien allouer la memoire avec calloc de ma map 
+2- calculer les longeur et largeur de mon tab
+
+Pour afficher mon tableau, je segfault apparement car je ne malloc pas la place du tablea
+puis je boucle a l infini sur mon 1er [y][x]
+
+
+
+PARTIE GRAPHIQUE : 
+
+1- creer 2 structures
+	1 structure pour les images (void) 
+	et 1 structure data qui contiendra la struc image
+
+2 - initialiser mes images dans un fonction a part en rappelant mes structures
+	c'est ici qu il faut definir leurs adresses
+
+3 - afficher les images avec mlx put in windows qui lui appelera des pointeurs
+
+
+taille de la fenetre : taille de l'image * 80*ft-strelen 
+pour la hauteur : 80*nb lines
+
+
+
+
+

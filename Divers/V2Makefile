@@ -1,0 +1,53 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    V2Makefile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/29 09:08:40 by abonnefo          #+#    #+#              #
+#    Updated: 2023/01/16 10:27:20 by abonnefo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = so_long
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+LIBFT = libft/ #faux, a corriger, mettre le chemin ? 
+MINILIBX = minilibx/
+
+SRCPATH = srcs/
+SRCS = so_long.c \
+	get_next_line_utils.c \
+	get_next_line.c \
+	ft_split.c \
+	check_map.c \
+
+OBJS = $(SRCS:.c=.o)
+
+AR = ar rcs
+
+RM = rm -f
+
+%.o : $(SRCPATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OBJS)	# a verifier le chemin  pour les make de libft et minilibx
+	$(MAKE) --no-print-directory -C libft 
+	$(MAKE) --no-print-directory -C minilibx
+	$(AR) $(NAME) $(OBJS) $(LIBFT) $(MINILIBX)
+
+all : $(NAME)
+
+clean : 
+	$(RM) $(OBJS) 
+
+fclean : clean 
+	$(RM) $(NAME)
+
+re : fclean all
+
+.PHONY: all clean fclean re
