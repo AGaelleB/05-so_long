@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:28:29 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/02 09:55:40 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:29:59 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_init_images(t_data *data, t_image *img)
 	img->path_sand = "images/sand.xpm";
 	img->img_sand = mlx_xpm_file_to_image
 		(data->mlx, img->path_sand, &img->img_width, &img->img_height);
-	img->path_cactus = "images/cactus2.xpm";
+	img->path_cactus = "images/cactus.xpm";
 	img->img_cactus = mlx_xpm_file_to_image
 		(data->mlx, img->path_cactus, &img->img_width, &img->img_height);
 	img->path_cowboy = "images/cowboy.xpm";

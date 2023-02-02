@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:06:24 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/01/24 09:14:11 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:23:09 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	ft_check_first_line(char **tab)
 			count_first++;
 		i++;
 	}
-	return (i);
+	if (i == count_first)
+		return (1);
+	else
+		return (0);
 }
 
 int	ft_check_last_line(char **tab)
@@ -49,12 +52,7 @@ int	ft_check_last_line(char **tab)
 			count_last++;
 		i++;
 	}
-	return (i);
-}
-
-int	ft_check_first_and_last_line(char **tab)
-{
-	if (ft_check_first_line(tab) == ft_check_last_line(tab))
+	if (i == count_last)
 		return (1);
 	else
 		return (0);

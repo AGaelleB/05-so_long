@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:06:24 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/01/17 10:53:08 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:01:46 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ void	ft_check_backslash(char *str)
 
 int	ft_check_if_rectangle(char **tab)
 {
-	if (ft_check_first_and_last_line(tab) == 1
-		&& ft_check_first_and_last_side(tab) == 1
+	if (ft_check_first_and_last_side(tab) == 1
+		&& ft_check_last_line(tab) == 1
+		&& ft_check_first_line(tab) == 1
 		&& ft_check_equal_lenght(tab) == 1)
 		return (1);
 	else
 	{
 		ft_printf("%s", "Error: map is not rectangular\n");
 		ft_free_tab(tab);
-		exit(0);
+		exit(1);
 	}
 }

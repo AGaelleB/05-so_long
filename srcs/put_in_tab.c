@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:24:34 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/02 09:59:57 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:03:42 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ char	*ft_read_and_join(char *map)
 	if (s1 == NULL)
 		return (NULL);
 	s2 = get_next_line(fd);
+	if (!s2)
+	{
+		ft_printf("%s", "Error: The file is empty.\n");
+		free(s1);
+		return (NULL);
+	}
 	while (s2)
 	{
 		temp = s1;
@@ -84,9 +90,9 @@ char	*ft_check_map_and_duplicate(char **tab)
 		ft_free_tab(tab);
 		return (NULL);
 	}
+	ft_map_replace_e(data.duplicated_tab, data.size_y, data.size_x); //ERREUR ICI
 	y = ft_search_perso_y(data.size_y, data.size_x, 'P', tab);
 	x = ft_search_perso_x(data.size_y, data.size_x, 'P', tab);
-	ft_map_replace_e(data.duplicated_tab, y, x);
 	ft_search_and_replace(data.duplicated_tab, y, x);
 	if (ft_check_ultimate_path(data.duplicated_tab) == 0)
 	{

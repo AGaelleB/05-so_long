@@ -14,7 +14,7 @@ NAME = so_long
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra #-Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRCS = srcs/so_long.c \
 	srcs/check_items.c \
