@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:24:34 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/01 15:47:43 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:59:57 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,28 @@ char	*ft_read_and_join(char *map)
 char	*ft_check_map_and_duplicate(char **tab)
 {
 	t_data	data;
-	char	**duplicated_tab;
 	int		y;
 	int		x;
 
 	data.size_x = ft_count_width(tab);
 	data.size_y = ft_count_height(tab);
-	duplicated_tab = ft_tabdup(tab);
-	if (duplicated_tab == NULL)
+	data.duplicated_tab = ft_tabdup(tab);
+	if (data.duplicated_tab == NULL)
 	{
 		ft_free_tab(tab);
 		return (NULL);
 	}
 	y = ft_search_perso_y(data.size_y, data.size_x, 'P', tab);
 	x = ft_search_perso_x(data.size_y, data.size_x, 'P', tab);
-	ft_map_replace_e(duplicated_tab, y, x);
-	ft_search_and_replace(duplicated_tab, y, x);
-	if (ft_check_ultimate_path(duplicated_tab) == 0)
+	ft_map_replace_e(data.duplicated_tab, y, x);
+	ft_search_and_replace(data.duplicated_tab, y, x);
+	if (ft_check_ultimate_path(data.duplicated_tab) == 0)
 	{
-		ft_free_tab(duplicated_tab);
+		ft_free_tab(data.duplicated_tab);
 		ft_free_tab(tab);
-		exit (1);
+		exit(1);
 	}
-	ft_free_tab(duplicated_tab);
+	ft_free_tab(data.duplicated_tab);
 	return (NULL);
 }
 

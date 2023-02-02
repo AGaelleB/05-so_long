@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 09:48:49 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/01 16:59:49 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:53:25 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ typedef struct s_image {
 
 typedef struct s_data {
 	void			*mlx;
-	void			*mlx_ptr;
 	void			*mlx_win;
 	char			**tab;
+	char			**duplicated_tab;
 	int				window_width;
 	int				window_height;
 	int				count;
@@ -126,7 +126,7 @@ int		ft_check_ultimate_path(char **tab);
 /******************************* put_in_window *******************************/
 
 void	ft_put_into_window(t_data *data, char **tab);
-void	ft_init_images(t_image *img);
+void	ft_init_images(t_data *data, t_image *img);
 
 /*********************************** utils ***********************************/
 

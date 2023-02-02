@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:49:22 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/02 08:55:53 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:21:51 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_invalid_open(int ac, char **av)
 		exit(1);
 	}
 	fd = open(av[1], O_DIRECTORY);
-	if (fd > 0)
+	if (fd >= 1)
 	{
 		ft_printf("Error : Invalid map (<name>.ber)\n");
 		exit(1);
@@ -40,7 +40,7 @@ void	ft_invalid_open(int ac, char **av)
 
 void	ft_run_window(t_data *data)
 {
-	ft_init_images(data->img);
+	ft_init_images(data, data->img);
 	data->mlx_win = mlx_new_window(data->mlx,
 			data->window_width, data->window_height, "so_long");
 	ft_put_into_window(data, data->tab);
@@ -58,8 +58,6 @@ int	main(int ac, char **av)
 	ft_invalid_open(ac, av);
 	data.count = 0;
 	data.tab = ft_put_in_tab(av[1]);
-	// if (data.tab == NULL)
-	// 	exit(1);
 	data.mlx = mlx_init();
 	data.img = &img;
 	data.window_width = ft_count_width(data.tab) * 80;
@@ -69,5 +67,4 @@ int	main(int ac, char **av)
 	data.player_y = ft_search_perso_y(data.y, data.x, 'P', data.tab);
 	data.player_x = ft_search_perso_x(data.y, data.x, 'P', data.tab);
 	ft_run_window(&data);
-	free(data.mlx);
 }
