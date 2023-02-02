@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:49:22 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/02 10:21:51 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:27:23 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ int	main(int ac, char **av)
 	data.img = &img;
 	data.window_width = ft_count_width(data.tab) * 80;
 	data.window_height = ft_count_height(data.tab) * 80;
+	if ((data.window_width > 2560) || (data.window_height > 1440))
+	{
+		ft_printf("%s", "Error: Size windows.\n");
+		ft_free_tab(data.tab);
+		ft_free_game(&data);
+		exit(1);
+	}
 	data.x = ft_count_width(data.tab);
 	data.y = ft_count_height(data.tab);
 	data.player_y = ft_search_perso_y(data.y, data.x, 'P', data.tab);

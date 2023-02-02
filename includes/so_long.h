@@ -6,7 +6,7 @@
 /*   By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 09:48:49 by abonnefo          #+#    #+#             */
-/*   Updated: 2023/02/02 09:53:25 by abonnefo         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:22:19 by abonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,10 @@ int		ft_check_items(char **tab);
 
 /******************************* check_lines_map ******************************/
 
-int		ft_check_first_and_last_line(char **tab);
 int		ft_check_first_and_last_side(char **tab);
 int		ft_check_equal_lenght(char **tab);
+int		ft_check_first_line(char **tab);
+int		ft_check_last_line(char **tab);
 
 /********************************** check_map *********************************/
 
@@ -101,6 +102,8 @@ void	ft_map_replace_e(char **tab, int size_y, int size_x);
 
 /******************************* close_window *******************************/
 
+void	ft_free_images(t_data *data);
+void	ft_free_game(t_data *data);
 void	ft_exit_game(t_data *data);
 int		ft_close_esc(int keycode, t_data *data);
 int		ft_close_mouse(t_data *data);
