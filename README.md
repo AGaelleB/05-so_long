@@ -3,6 +3,8 @@
 ## **Project Description**
 The goal of this project is to create a simple 2D game using **MiniLibX**. You will work with textures, sprites, and basic gameplay mechanics such as movement, collision detection, and map parsing.
 
+![Screenshot from 2024-12-17 13-53-03](https://github.com/user-attachments/assets/5bfe93b3-d6ad-489a-b3ab-1054c639e5d6)
+
 ---
 
 ## **Mandatory Part**
