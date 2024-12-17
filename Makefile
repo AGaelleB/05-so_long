@@ -6,67 +6,82 @@
 #    By: abonnefo <abonnefo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 10:23:59 by abonnefo          #+#    #+#              #
-#    Updated: 2023/01/30 17:36:16 by abonnefo         ###   ########.fr        #
+#    Updated: 2024/12/17 14:06:32 by abonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
+# Chemins vers les sous-dossiers
+LIBFT_DIR = ./libft
+PRINTF_DIR = $(LIBFT_DIR)/ft_printf
+GNL_DIR = $(LIBFT_DIR)/GNL
+MLX_DIR = ./includes/minilibx-linux
+
+# Bibliothèques
+LIBFT = $(LIBFT_DIR)/libft.a
+PRINTF = $(PRINTF_DIR)/libftprintf.a
+GNL = $(GNL_DIR)/libftGNL.a
+MLX = $(MLX_DIR)/libmlx.a
+
+# Fichiers sources et objets
+SRC_DIR = ./srcs
+OBJ_DIR = ./obj
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/srcs/%.o)
+
+# Création des sous-dossiers pour les objets
+OBJ_SUBDIRS = $(sort $(dir $(OBJ)))
+
+# Flags de compilation
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I ./includes -I $(MLX_DIR)
 
-CFLAGS = -Wall -Wextra -Werror -g3
+# Flags pour le linkage
+LDFLAGS = -L $(LIBFT_DIR) -lft -L $(PRINTF_DIR) -lftprintf -L $(GNL_DIR) -lftGNL -L $(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-SRCS = srcs/so_long.c \
-	srcs/check_items.c \
-	srcs/check_lines_map.c \
-	srcs/check_map.c \
-	srcs/check_path.c \
-	srcs/put_in_tab.c \
-	srcs/put_in_window.c \
-	srcs/utils.c \
-	srcs/key_press.c \
-	srcs/move_perso.c \
-	srcs/close_window.c \
-	libft/GNL/get_next_line.c \
-	libft/GNL/get_next_line_utils.c \
-	libft/ft_printf/ft_printf.c \
-	libft/ft_printf/ft_print_%.c \
-	libft/ft_printf/ft_print_c.c \
-	libft/ft_printf/ft_print_d.c \
-	libft/ft_printf/ft_print_p.c \
-	libft/ft_printf/ft_print_s.c \
-	libft/ft_printf/ft_print_u.c \
-	libft/ft_printf/ft_print_x.c \
-	libft/ft_split.c \
-	libft/ft_strdup.c \
-	libft/ft_strlen.c \
+# Règles
+all: $(NAME)
 
-OBJS = $(SRCS:.c=.o)
+$(NAME): $(LIBFT) $(PRINTF) $(GNL) $(MLX) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
+	@echo "✅ $(NAME) compiled successfully."
 
-AR = ar rcs
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
-RM = rm -f
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -Iminilibx-Imlx -O3 -c $< -o $@
-	@echo "\033[5;36m-gcc *.c in progress\033[0m"
+$(GNL):
+	$(MAKE) -C $(GNL_DIR)
 
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -Lminilibx -lmlx -Lminilibx -lXext -lX11 -lm -lz -o $(NAME)
-	@echo "\033[1;32m[Make : 'so_long' is done]\033[0m"
+# Création des fichiers .o dans les sous-dossiers appropriés
+$(OBJ_DIR)/%.o: %.c | $(OBJ_SUBDIRS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-all : $(NAME)
+# Création des sous-dossiers d'objets si non existants
+$(OBJ_SUBDIRS):
+	mkdir -p $@
 
-clean :
-	@$(RM) $(OBJS)
-	@echo "\033[1;33m[.o] Object files removed\033[0m"
+clean:
+	$(MAKE) clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(PRINTF_DIR)
+	$(MAKE) clean -C $(GNL_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
+	rm -rf $(OBJ_DIR)
+	@echo "🧹 Object files cleaned."
 
-fclean : clean
-	@$(RM) $(NAME)
-	@echo "\033[1;33m[.a] Binary file removed\033[0m"
+fclean: clean
+	$(MAKE) fclean -C $(LIBFT_DIR)
+	$(MAKE) fclean -C $(PRINTF_DIR)
+	$(MAKE) fclean -C $(GNL_DIR)
+	rm -f $(NAME)
+	@echo "🗑️  Full cleanup completed."
 
-
-re : fclean all
+re: fclean all
 
 .PHONY: all clean fclean re
