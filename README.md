@@ -11,20 +11,14 @@ The goal of this project is to create a simple 2D game using **MiniLibX**. You w
 
 ### **Program Requirements**
 1. **Program Name**: `so_long`
-2. **Files to Submit**:
-   - `Makefile`  
-   - Header files (`*.h`)  
-   - Source files (`*.c`)  
-   - Sample maps (`*.ber`)  
-   - Textures for your game.
 
-3. **External Functions Allowed**:
+2. **External Functions Allowed**:
    - `open`, `close`, `read`, `write`, `malloc`, `free`, `perror`, `strerror`, `exit`  
    - **MiniLibX** functions  
    - **Mathematical library** (`-lm` flag)  
    - `ft_printf` or any equivalent function coded by you.
 
-4. **Compilation**:
+3. **Compilation**:
    - Use the following flags:
      ```bash
      -Wall -Wextra -Werror
@@ -114,28 +108,6 @@ The goal of this project is to create a simple 2D game using **MiniLibX**. You w
    ```
 
 ---
-
-## **Testing**
-
-### **Example Test Map**:
-Save this content as `example.ber`:
-```
-111111
-1P00E1
-1C0011
-111111
-```
-
-### **Run the Game**:
-```bash
-./so_long example.ber
-```
-
-### **Expected Behavior**:
-- The game window opens and displays the map.  
-- Use `W`, `A`, `S`, and `D` to move the player.  
-- Collect all items and exit through the `E`.  
-- The number of movements is displayed in the terminal.  
 
 ## **Overview of the game**
 
